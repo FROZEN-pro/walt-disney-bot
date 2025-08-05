@@ -6,7 +6,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 const sheets = google.sheets({
   version: 'v4',
   auth: new google.auth.GoogleAuth({
-    keyFile: './credentials.json',
+    credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON),
     scopes: ['https://www.googleapis.com/auth/spreadsheets']
   })
 });
@@ -180,4 +180,5 @@ module.exports = async (req, res) => {
     console.error(err);
     res.status(500).send('Error');
   }
+
 };
